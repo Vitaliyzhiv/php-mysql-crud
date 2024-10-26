@@ -1,11 +1,13 @@
 <?php
 session_start();
 
-$conn = mysqli_connect(
-  'localhost',
-  'root',
-  'password123',
-  'php_mysql_crud'
-) or die(mysqli_erro($mysqli));
+$host = 'localhost';
+$db = 'php_mysql_crud';
+$user = 'root';
+$pass = '';
 
-?>
+try {
+  $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+} catch (PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}

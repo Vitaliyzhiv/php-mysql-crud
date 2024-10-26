@@ -43,9 +43,10 @@
 
           <?php
           $query = "SELECT * FROM task";
-          $result_tasks = mysqli_query($conn, $query);    
-
-          while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+          $stmt = $conn->prepare($query);
+          $stmt->execute();
+          
+          while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
           <tr>
             <td><?php echo $row['title']; ?></td>
             <td><?php echo $row['description']; ?></td>
